@@ -57,6 +57,7 @@ public class OutageInfoTask implements Callable<List<OutageInfo>> {
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject outageInfoJson = jsonArray.getJSONObject(i);
             OutageInfo outageInfo = JSON.parseObject(outageInfoJson.toJSONString(), OutageInfo.class);
+            outageInfo.setProvinceCode(areaOrg.getProvinceCode());
             list.add(outageInfo);
         }
         return list;

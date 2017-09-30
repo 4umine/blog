@@ -28,7 +28,7 @@ public class HttpUtils {
         return response.body().string();
     }
 
-    public static String okPostForm(String url, Map<String, Object> params) throws IOException {
+    public static String okPostForm(String url, Map<String, Object> params) {
         OkHttpClient client = new OkHttpClient();
         FormEncodingBuilder builder = new FormEncodingBuilder();
         if (MapUtils.isNotEmpty(params)) {
@@ -40,10 +40,16 @@ public class HttpUtils {
                 .url(url)
                 .post(builder.build())
                 .build();
-        Response response = client.newCall(request).execute();
-        if (!response.isSuccessful()) {
-            throw new IOException("服务器端错误: " + response);
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException("服务器端错误: " + response);
+            }
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return response.body().string();
+        return null;
     }
 }

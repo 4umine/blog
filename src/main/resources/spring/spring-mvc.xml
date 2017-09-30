@@ -33,5 +33,6 @@
         <property name="suffix" value=".vm" />
         <property name="contentType" value="text/html;charset=UTF-8"/>
         <property name="exposeRequestAttributes" value="true" />
+        <property name="requestContextAttribute" value="rc"/>
     </bean>
 </beans>

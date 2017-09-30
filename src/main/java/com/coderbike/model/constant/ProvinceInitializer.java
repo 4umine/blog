@@ -8,7 +8,9 @@ import com.coderbike.utils.http.HttpUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 获取省份
@@ -17,6 +19,7 @@ import java.util.List;
 public class ProvinceInitializer {
 
     private static final List<AreaOrg> ORG_LIST = new ArrayList<>(30);
+    private static final Map<String, String> PROVINCE_CODE_NAME_MAP = new HashMap<>(30);
 
     static {
         try {
@@ -27,6 +30,7 @@ public class ProvinceInitializer {
                     JSONObject jsonObject = provinceArray.getJSONObject(i);
                     AreaOrg provinceOrg = JSON.parseObject(jsonObject.toJSONString(), AreaOrg.class);
                     ORG_LIST.add(provinceOrg);
+                    PROVINCE_CODE_NAME_MAP.put(provinceOrg.getCode(), provinceOrg.getValue());
                 }
             }
         } catch (IOException e) {
@@ -36,5 +40,9 @@ public class ProvinceInitializer {
 
     public static List<AreaOrg> getProvinceList() {
         return ORG_LIST;
+    }
+
+    public static Map<String, String> getProvinceMap() {
+        return PROVINCE_CODE_NAME_MAP;
     }
 }
