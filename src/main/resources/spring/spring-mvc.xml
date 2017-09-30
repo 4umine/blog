@@ -12,7 +12,9 @@
 
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="defaultCharset" value="UTF-8"/>
+            </bean>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
@@ -32,10 +34,4 @@
         <property name="contentType" value="text/html;charset=UTF-8"/>
         <property name="exposeRequestAttributes" value="true" />
     </bean>
-
-    <!-- static resource -->
-    <!--<mvc:resources mapping="/js/**" location="/static/js/" />-->
-    <!--<mvc:resources mapping="/css/**" location="/static/css/" />-->
-    <!--<mvc:resources mapping="/images/**" location="/static/images/" />-->
-    <!--<mvc:default-servlet-handler />-->
 </beans>

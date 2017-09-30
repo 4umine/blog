@@ -1,5 +1,6 @@
 package com.coderbike.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,9 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/test")
 public class TestController {
 
+    @Value("${myname}")
+    private String myName;
+
     @RequestMapping("/view.do")
     public String testView(HttpServletRequest req) {
-        req.setAttribute("username", "tom");
+        req.setAttribute("username", myName);
         return "test";
     }
 }
