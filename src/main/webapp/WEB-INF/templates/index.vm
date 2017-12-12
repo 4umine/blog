@@ -7,7 +7,7 @@
 </head>
 <body>
     <!-- 排名 -->
-    <canvas id="outageNumChart" style="width: 100%" height="400px"></canvas>
+##    <canvas id="outageNumChart" style="width: 100%" height="400px"></canvas>
     <select class="form-control" style="width: 60%" onchange="searchOutageInfo(this)">
         <option value="">请选择省份</option>
         #foreach($!province in $!provinceList)
@@ -20,7 +20,7 @@
     <script src="https://cdn.bootcss.com/Chart.js/2.7.0/Chart.min.js"></script>
     <script>
         $(function() {
-            rankInfo();
+//            rankInfo();
         });
 
         function searchOutageInfo(it) {

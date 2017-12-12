@@ -40,7 +40,7 @@ public class OutageServiceImpl implements OutageService {
     public List<OutageInfo> queryOutageInfoByProvince(String provinceCode, String startDate, String endDate) {
         // 获取区
         List<Future<List<OutageInfo>>> outageInfoList = new ArrayList<>(500);
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1);
         map.put("orgNo", provinceCode);
         String areaResult = HttpUtils.okPostForm(ApiConstant.NEXT_ORG_LIST_API, map);
         if (StringUtils.isBlank(areaResult)) {

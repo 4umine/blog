@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.coderbike.model.vo.AreaOrg;
 import com.coderbike.utils.http.HttpUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +22,11 @@ public class ProvinceInitializer {
 
     private static final List<AreaOrg> ORG_LIST = new ArrayList<>(30);
     private static final Map<String, String> PROVINCE_CODE_NAME_MAP = new HashMap<>(30);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProvinceInitializer.class);
 
     static {
         try {
+            LOGGER.info("----->start get province info");
             String provinceResult = HttpUtils.okPost(ApiConstant.ORG_LIST_API, "");
             JSONArray provinceArray = JSONArray.parseArray(provinceResult);
             if (provinceArray != null && provinceArray.size() > 0) {

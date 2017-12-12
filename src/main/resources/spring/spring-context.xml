@@ -10,7 +10,7 @@
 			            http://www.springframework.org/schema/task
 			            http://www.springframework.org/schema/task/spring-task.xsd">
 
-    <context:property-placeholder location="classpath:config.properties"/>
+    <context:property-placeholder location="classpath:config.properties, memcached.properties"/>
 
     <!-- scan and create component -->
     <context:component-scan base-package="com.coderbike"/>
@@ -18,5 +18,36 @@
     <!-- scan @Scheduled -->
     <task:annotation-driven/>
 
-
+    <bean id="clientBuilder" name="memcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">
+        <!-- XMemcachedClientBuilder have two arguments.First is server list,and second is weights array. -->
+        <constructor-arg>
+            <list>
+                <bean class="java.net.InetSocketAddress">
+                    <constructor-arg>
+                        <value>${memcached.url}</value>
+                    </constructor-arg>
+                    <constructor-arg>
+                        <value>${memcached.port}</value>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>1</value>
+            </list>
+        </constructor-arg>
+        <property name="connectionPoolSize" value="2" />
+        <property name="commandFactory">
+            <bean class="net.rubyeye.xmemcached.command.TextCommandFactory" />
+        </property>
+        <property name="sessionLocator">
+            <bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator" />
+        </property>
+        <property name="transcoder">
+            <bean class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder" />
+        </property>
+    </bean>
+    <!-- Use factory bean to build memcached client -->
+    <bean name="memcachedClient" factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown"/>
 </beans>

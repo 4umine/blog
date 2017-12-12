@@ -9,6 +9,8 @@ import com.coderbike.model.vo.OutageRankVo;
 import com.coderbike.service.OutageService;
 import com.coderbike.utils.http.MapUtil;
 import org.apache.commons.collections.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,7 @@ import java.util.*;
 public class OutageController {
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static final Logger LOGGER = LoggerFactory.getLogger(OutageController.class);
 
     @Autowired
     private OutageService outageService;
@@ -67,6 +70,7 @@ public class OutageController {
     @RequestMapping("/rank.json")
     @ResponseBody
     public String rank() {
+        LOGGER.info("start query outage info and rank");
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 7);
         String outageDate = DATE_FORMAT.format(calendar.getTime());
