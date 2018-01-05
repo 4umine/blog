@@ -1,1 +1,1 @@
-## SpringMVC + Spring + Mybatis + Maven + Memcache 项目示例
+## SpringMVC + Spring + Mybatis + Velocity + Maven 项目示例

@@ -332,6 +332,12 @@
       <version>2.0.4.RELEASE</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.somelogs</groupId>
+      <artifactId>broker</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
 
   <build>
