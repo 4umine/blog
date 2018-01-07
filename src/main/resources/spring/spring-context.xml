@@ -55,7 +55,12 @@
     <bean name="memcachedClient" factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown"/>
 
     <!-- rpc test -->
-    <bean id="clientFactory" class="com.somelogs.facotry.ClientFactory">
-
+    <bean id="userClient" class="com.somelogs.factory.ClientFactory" factory-method="create">
+        <constructor-arg name="config">
+            <bean class="com.somelogs.client.ClientConfig">
+                <property name="clientClassName" value="com.coderbike.client.UserClient"/>
+                <property name="serverUrl" value="${user.client.url}"/>
+            </bean>
+        </constructor-arg>
     </bean>
 </beans>

@@ -63,7 +63,7 @@
   </profiles>
 
   <dependencies>
-    <!-- Spring and springmvc -->
+    <!-- Spring and spring mvc -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
