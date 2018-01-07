@@ -135,7 +135,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- log -->
+    <!-- slf4j + log4j -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -334,10 +334,9 @@
 
     <dependency>
       <groupId>com.somelogs</groupId>
-      <artifactId>broker</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <artifactId>tinyrpc</artifactId>
+      <version>1.0</version>
     </dependency>
-
   </dependencies>
 
   <build>

@@ -53,4 +53,9 @@
     </bean>
     <!-- Use factory bean to build memcached client -->
     <bean name="memcachedClient" factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown"/>
+
+    <!-- rpc test -->
+    <bean id="clientFactory" class="com.somelogs.facotry.ClientFactory">
+
+    </bean>
 </beans>
