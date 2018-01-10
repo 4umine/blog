@@ -46,6 +46,4 @@ public class UserController {
         System.out.println(response);
         return new Response<>();
     }
-
-
 }
